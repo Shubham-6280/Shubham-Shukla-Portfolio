@@ -1,42 +1,15 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { motion } from 'framer-motion';
 import { 
   ArrowRight, 
   Mail, 
-  FileDown, 
-  TrendingUp, 
-  Database, 
-  BarChart3, 
-  Table, 
-  Sparkles,
-  Layers,
-  Terminal,
-  Activity,
-  CheckCircle2,
-  Calendar
+  FileDown 
 } from 'lucide-react';
 import { GithubIcon, LinkedinIcon } from './Icons';
 import { personalInfo } from '../data/portfolioData';
-
-// Interactive Sample Data for Hero Analytics Preview (Clearly labeled as Sample Data)
-const sampleKpis = [
-  { label: 'Sample Q3 Revenue', value: '₹18.4L', change: '+14.2%', trend: 'up' },
-  { label: 'Sample Profit Margin', value: '23.8%', change: '+3.1%', trend: 'up' },
-  { label: 'Sample Order Volume', value: '1,420', change: '+8.6%', trend: 'up' },
-  { label: 'Avg Ticket Size', value: '₹1,295', change: '-1.4%', trend: 'neutral' },
-];
-
-const sampleCategoryBars = [
-  { name: 'Dairy & Breakfast', percent: 84, color: '#06b6d4', revenue: '₹4.8L' },
-  { name: 'Snacks & Beverages', percent: 68, color: '#10b981', revenue: '₹3.9L' },
-  { name: 'Household & Staples', percent: 52, color: '#6366f1', revenue: '₹3.1L' },
-  { name: 'Personal Care', percent: 40, color: '#f59e0b', revenue: '₹2.4L' },
-];
+import profilePhoto from '../assets/shubham-photo.jpg';
 
 export default function Hero() {
-  const [activeTab, setActiveTab] = useState('dashboard'); // 'dashboard' | 'sql' | 'tools'
-  const [selectedMetric, setSelectedMetric] = useState(0);
-
   const scrollToSection = (e, id) => {
     e.preventDefault();
     const el = document.getElementById(id);
@@ -168,234 +141,26 @@ export default function Hero() {
 
           </div>
 
-          {/* Right Column: Analytics-Inspired Interactive Hero Visual */}
+          {/* Right Column: Professional Portrait Frame */}
           <motion.div
             initial={{ opacity: 0, scale: 0.95, y: 30 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.2 }}
-            className="lg:col-span-5 relative"
+            className="lg:col-span-5 flex justify-center lg:justify-end relative"
           >
             {/* Ambient card aura */}
-            <div className="absolute -inset-1 rounded-2xl bg-gradient-to-r from-cyan-500/20 via-blue-500/10 to-indigo-500/20 blur-xl opacity-75 -z-10" />
+            <div className="absolute -inset-2 rounded-3xl bg-gradient-to-tr from-cyan-500/20 via-sky-500/10 to-indigo-500/20 blur-2xl opacity-75 -z-10" />
 
-            <div className="glass-panel rounded-2xl p-5 border border-white/10 shadow-2xl overflow-hidden relative">
-              
-              {/* Header Bar with Tab Switches */}
-              <div className="flex items-center justify-between pb-3.5 mb-4 border-b border-white/10">
-                <div className="flex items-center gap-2">
-                  <div className="flex gap-1.5">
-                    <span className="w-2.5 h-2.5 rounded-full bg-rose-500/80 inline-block" />
-                    <span className="w-2.5 h-2.5 rounded-full bg-amber-500/80 inline-block" />
-                    <span className="w-2.5 h-2.5 rounded-full bg-emerald-500/80 inline-block" />
-                  </div>
-                  <span className="text-[11px] font-mono text-slate-400 ml-2">
-                    analytics_workspace.preview
-                  </span>
-                </div>
-
-                {/* Sub-Tabs */}
-                <div className="flex items-center bg-black/40 p-1 rounded-lg border border-white/5">
-                  <button
-                    onClick={() => setActiveTab('dashboard')}
-                    className={`px-2.5 py-1 text-[10px] font-mono rounded transition-colors ${
-                      activeTab === 'dashboard'
-                        ? 'bg-cyan-500/20 text-cyan-300 font-semibold'
-                        : 'text-slate-400 hover:text-white'
-                    }`}
-                  >
-                    Dashboard
-                  </button>
-                  <button
-                    onClick={() => setActiveTab('sql')}
-                    className={`px-2.5 py-1 text-[10px] font-mono rounded transition-colors ${
-                      activeTab === 'sql'
-                        ? 'bg-emerald-500/20 text-emerald-300 font-semibold'
-                        : 'text-slate-400 hover:text-white'
-                    }`}
-                  >
-                    SQL Query
-                  </button>
-                  <button
-                    onClick={() => setActiveTab('tools')}
-                    className={`px-2.5 py-1 text-[10px] font-mono rounded transition-colors ${
-                      activeTab === 'tools'
-                        ? 'bg-indigo-500/20 text-indigo-300 font-semibold'
-                        : 'text-slate-400 hover:text-white'
-                    }`}
-                  >
-                    Stack
-                  </button>
-                </div>
-              </div>
-
-              {/* Sample Data Disclaimer Badge */}
-              <div className="flex items-center justify-between text-[10px] font-mono px-3 py-1.5 rounded-md bg-white/[0.02] border border-white/5 text-slate-400 mb-4">
-                <span className="flex items-center gap-1.5 text-cyan-400">
-                  <Activity className="w-3 h-3" /> Live Visual Engine
-                </span>
-                <span className="text-slate-500">
-                  Sample Data Demo
-                </span>
-              </div>
-
-              {/* Tab 1: Live Interactive Mini Sales Dashboard */}
-              {activeTab === 'dashboard' && (
-                <div className="space-y-4">
-                  {/* KPI Cards Grid */}
-                  <div className="grid grid-cols-2 gap-2.5">
-                    {sampleKpis.map((kpi, idx) => (
-                      <div
-                        key={kpi.label}
-                        onClick={() => setSelectedMetric(idx)}
-                        className={`p-3 rounded-xl border cursor-pointer transition-all ${
-                          selectedMetric === idx
-                            ? 'bg-cyan-950/30 border-cyan-500/40 shadow-sm shadow-cyan-500/10'
-                            : 'bg-white/[0.02] border-white/5 hover:border-white/10'
-                        }`}
-                      >
-                        <div className="text-[10px] text-slate-400 font-medium truncate mb-1">
-                          {kpi.label}
-                        </div>
-                        <div className="flex items-baseline justify-between">
-                          <span className="text-lg font-bold font-mono text-white">
-                            {kpi.value}
-                          </span>
-                          <span className={`text-[10px] font-mono flex items-center gap-0.5 ${
-                            kpi.trend === 'up' ? 'text-emerald-400' : 'text-slate-400'
-                          }`}>
-                            <TrendingUp className="w-2.5 h-2.5" />
-                            {kpi.change}
-                          </span>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-
-                  {/* Category Performance Breakdown Bar Visualization */}
-                  <div className="p-3.5 rounded-xl bg-black/40 border border-white/5">
-                    <div className="flex items-center justify-between text-xs font-semibold text-slate-300 mb-3">
-                      <span>Category Distribution</span>
-                      <span className="text-[10px] font-mono text-slate-500">Sorted by Volume</span>
-                    </div>
-
-                    <div className="space-y-2.5">
-                      {sampleCategoryBars.map((item) => (
-                        <div key={item.name} className="space-y-1">
-                          <div className="flex justify-between text-[11px] font-mono">
-                            <span className="text-slate-300 truncate max-w-[170px]">{item.name}</span>
-                            <span className="text-slate-400">{item.revenue}</span>
-                          </div>
-                          <div className="w-full h-1.5 rounded-full bg-slate-800/80 overflow-hidden">
-                            <motion.div
-                              initial={{ width: 0 }}
-                              animate={{ width: `${item.percent}%` }}
-                              transition={{ duration: 0.8, ease: 'easeOut' }}
-                              className="h-full rounded-full"
-                              style={{ backgroundColor: item.color }}
-                            />
-                          </div>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-
-                  {/* Sparkline Trend Preview */}
-                  <div className="p-3 rounded-xl bg-white/[0.02] border border-white/5 flex items-center justify-between">
-                    <div>
-                      <div className="text-[10px] text-slate-400 font-mono">Simulated Monthly Run-Rate</div>
-                      <div className="text-xs font-semibold text-emerald-400 flex items-center gap-1 mt-0.5">
-                        <CheckCircle2 className="w-3 h-3" /> Consistent Upward Trajectory
-                      </div>
-                    </div>
-                    {/* SVG Sparkline */}
-                    <svg className="w-28 h-8 text-cyan-400" viewBox="0 0 100 30" fill="none">
-                      <path
-                        d="M0 25 Q 15 22, 25 18 T 50 14 T 75 8 T 100 4"
-                        stroke="currentColor"
-                        strokeWidth="2"
-                        strokeLinecap="round"
-                      />
-                      <path
-                        d="M0 25 Q 15 22, 25 18 T 50 14 T 75 8 T 100 4 L 100 30 L 0 30 Z"
-                        fill="url(#sparkline-gradient)"
-                        opacity="0.2"
-                      />
-                      <defs>
-                        <linearGradient id="sparkline-gradient" x1="0" y1="0" x2="0" y2="1">
-                          <stop offset="0%" stopColor="#06b6d4" />
-                          <stop offset="100%" stopColor="transparent" />
-                        </linearGradient>
-                      </defs>
-                    </svg>
-                  </div>
-                </div>
-              )}
-
-              {/* Tab 2: SQL Query Preview */}
-              {activeTab === 'sql' && (
-                <div className="space-y-3 font-mono text-xs">
-                  <div className="p-3 rounded-xl bg-black/60 border border-white/10 text-slate-300 space-y-2">
-                    <div className="text-[10px] text-slate-500 uppercase tracking-wider">// Zepto SQL Query Snippet</div>
-                    <pre className="text-[11px] leading-relaxed overflow-x-auto text-cyan-300">
-                      <code>
-                        <span className="text-indigo-400">SELECT</span> category,<br />
-                        {'  '}<span className="text-emerald-400">SUM</span>(discountedSellingPrice * availableQuantity) <span className="text-indigo-400">AS</span> total_revenue<br />
-                        <span className="text-indigo-400">FROM</span> zepto<br />
-                        <span className="text-indigo-400">GROUP BY</span> category<br />
-                        <span className="text-indigo-400">ORDER BY</span> total_revenue <span className="text-indigo-400">DESC</span>;
-                      </code>
-                    </pre>
-                  </div>
-
-                  <div className="p-3 rounded-xl bg-white/[0.02] border border-white/5 space-y-2">
-                    <div className="text-[10px] text-slate-400 font-semibold">Query Execution Snapshot</div>
-                    <div className="text-[11px] text-slate-300 grid grid-cols-2 gap-2">
-                      <div className="p-2 rounded bg-white/5">
-                        <div className="text-[9px] text-slate-500">Aggregated Rows</div>
-                        <div className="font-bold text-white">10 Categories</div>
-                      </div>
-                      <div className="p-2 rounded bg-white/5">
-                        <div className="text-[9px] text-slate-500">Query Status</div>
-                        <div className="font-bold text-emerald-400">Executed OK (0.014s)</div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              )}
-
-              {/* Tab 3: Core Tool Stack Overview */}
-              {activeTab === 'tools' && (
-                <div className="grid grid-cols-2 gap-3 py-1">
-                  <div className="p-3 rounded-xl bg-cyan-950/20 border border-cyan-800/30">
-                    <BarChart3 className="w-5 h-5 text-cyan-400 mb-2" />
-                    <div className="text-xs font-bold text-white">Power BI</div>
-                    <div className="text-[10px] text-slate-400 mt-1">Interactive reports, KPI cards, slicers & Power Query</div>
-                  </div>
-
-                  <div className="p-3 rounded-xl bg-emerald-950/20 border border-emerald-800/30">
-                    <Database className="w-5 h-5 text-emerald-400 mb-2" />
-                    <div className="text-xs font-bold text-white">MySQL & SQL</div>
-                    <div className="text-[10px] text-slate-400 mt-1">Data cleaning, GROUP BY, aggregations & CASE logic</div>
-                  </div>
-
-                  <div className="p-3 rounded-xl bg-indigo-950/20 border border-indigo-800/30">
-                    <Table className="w-5 h-5 text-indigo-400 mb-2" />
-                    <div className="text-xs font-bold text-white">Microsoft Excel</div>
-                    <div className="text-[10px] text-slate-400 mt-1">Pivot tables, pivot charts, slicers & reporting</div>
-                  </div>
-
-                  <div className="p-3 rounded-xl bg-amber-950/20 border border-amber-800/30">
-                    <Terminal className="w-5 h-5 text-amber-400 mb-2" />
-                    <div className="text-xs font-bold text-white">Python Core</div>
-                    <div className="text-[10px] text-slate-400 mt-1">Scripting foundations & logical problem solving</div>
-                  </div>
-                </div>
-              )}
-
-              {/* Footer Note */}
-              <div className="mt-4 pt-3 border-t border-white/5 flex items-center justify-between text-[10px] text-slate-500 font-mono">
-                <span>Verified Candidate Artifacts</span>
-                <span className="text-cyan-400">RIMT CSE 2023–2027</span>
+            {/* Clean rounded-rectangle frame with subtle border and soft shadow */}
+            <div className="relative w-full max-w-[320px] sm:max-w-[380px] lg:max-w-[400px] rounded-2xl sm:rounded-3xl p-2 sm:p-2.5 glass-panel border border-white/10 shadow-2xl shadow-cyan-950/40">
+              <div className="relative overflow-hidden rounded-xl sm:rounded-2xl border border-white/5 bg-slate-950">
+                <img
+                  src={profilePhoto}
+                  alt={personalInfo.name}
+                  className="w-full h-auto block rounded-xl sm:rounded-2xl object-cover"
+                  loading="eager"
+                  decoding="async"
+                />
               </div>
             </div>
           </motion.div>

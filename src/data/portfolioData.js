@@ -10,6 +10,7 @@ export const personalInfo = {
   linkedin: "https://linkedin.com/in/shubham-shukla-60b8b4375",
   location: "Punjab, India",
   educationShort: "B.Tech CSE, RIMT University (2023–2027)",
+  photo: "/assets/shubham-photo.jpg",
   resumePath: "/resume.pdf",
   bio: "I am a Computer Science and Engineering student passionate about transforming raw data into meaningful insights. I work with SQL, Microsoft Excel, Power BI, and Python fundamentals to explore datasets, identify patterns, and build insightful reports and dashboards. Through hands-on projects, I am developing my skills in data cleaning, exploratory analysis, querying, and data visualization."
 };
